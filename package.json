@@ -1,18 +1,19 @@
 {
-  "name": "bonma",
-  "version": "0.0.1",
-  "private": true,
-  "description": "Modular Daily Assistant - A customizable personal dashboard",
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "scripts": {},
-  "devDependencies": {
-    "@biomejs/biome": "2.2.6"
-  },
-  "engines": {
-    "node": ">=18.0.0",
-    "bun": ">=1.0.0"
-  }
+	"name": "bonma",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Modular Daily Assistant - A customizable personal dashboard",
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"scripts": {},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.6",
+		"typescript": "^5.9.3"
+	},
+	"engines": {
+		"node": ">=18.0.0",
+		"bun": ">=1.0.0"
+	}
 }

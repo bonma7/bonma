@@ -1,0 +1,13 @@
+{
+	"name": "@bonma/config",
+	"version": "0.0.1",
+	"private": true,
+	"description": "Shared configuration files for Bonma monorepo",
+	"files": [
+		"tsconfig.base.json"
+	],
+	"dependencies": {
+		"@tsconfig/bun": "^1.0.9",
+		"@tsconfig/strictest": "^2.0.6"
+	}
+}
