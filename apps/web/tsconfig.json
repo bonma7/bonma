@@ -1,0 +1,31 @@
+{
+  "extends": "../../packages/config/tsconfig.base.json",
+  "compilerOptions": {
+    // JavaScript compilation target
+    "target": "ES2020",
+
+    // Type libraries to include
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    // JSX transformation for React 17+
+    "jsx": "react-jsx",
+
+    // Vite type definitions
+    "types": ["vite/client"],
+
+    // Path alias support
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+
+  // Files to include
+  "include": ["src"]
+
+  // Monorepo references (uncomment after creating packages/api and packages/ui)
+  // "references": [
+  //   { "path": "../../packages/api" },
+  //   { "path": "../../packages/ui" }
+  // ]
+}
