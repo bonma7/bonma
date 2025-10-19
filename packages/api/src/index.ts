@@ -1,5 +1,5 @@
-import { router } from "./trpc";
 import { healthRouter } from "./routers/health";
+import { router } from "./trpc";
 
 /**
  * Root tRPC router
@@ -20,8 +20,8 @@ export const appRouter = router({
  */
 export type AppRouter = typeof appRouter;
 
+export type { Context } from "./trpc";
 /**
  * Re-export utilities for server setup
  */
 export { createContext } from "./trpc";
-export type { Context } from "./trpc";

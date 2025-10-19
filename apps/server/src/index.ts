@@ -1,7 +1,7 @@
-import Fastify from "fastify";
+import { appRouter, createContext } from "@bonma/api";
 import cors from "@fastify/cors";
 import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
-import { appRouter, createContext } from "@bonma/api";
+import Fastify from "fastify";
 
 // Configuration from environment variables
 const PORT = Number(process.env.PORT) || 3001;
