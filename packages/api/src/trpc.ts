@@ -1,6 +1,5 @@
+import { prisma } from "@bonma/db";
 import { initTRPC } from "@trpc/server";
-// Uncomment after setting up @bonma/db
-// import { prisma } from "@bonma/db/client";
 
 /**
  * Create context for tRPC procedures
@@ -8,7 +7,7 @@ import { initTRPC } from "@trpc/server";
  */
 export const createContext = () => {
 	return {
-		// prisma,  // Uncomment after setting up @bonma/db
+		prisma,
 	};
 };
 

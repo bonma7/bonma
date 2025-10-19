@@ -1,4 +1,5 @@
 import { healthRouter } from "./routers/health";
+import { settingsRouter } from "./routers/settings";
 import { router } from "./trpc";
 
 /**
@@ -7,6 +8,7 @@ import { router } from "./trpc";
  */
 export const appRouter = router({
 	health: healthRouter,
+	settings: settingsRouter,
 	// Add more routers as modules are developed:
 	// habits: habitsRouter,
 	// todos: todosRouter,
