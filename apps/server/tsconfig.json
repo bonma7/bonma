@@ -1,0 +1,14 @@
+{
+	"extends": "../../packages/config/tsconfig.base.json",
+	"compilerOptions": {
+		"types": ["bun-types"],
+		"outDir": "./dist",
+		"rootDir": "./src"
+	},
+	"include": ["src/**/*"]
+	// Uncomment after packages/api and packages/db have tsconfig.json
+	// "references": [
+	//   { "path": "../../packages/api" },
+	//   { "path": "../../packages/db" }
+	// ]
+}

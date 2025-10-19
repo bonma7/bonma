@@ -1,0 +1,12 @@
+{
+	"extends": "../../packages/config/tsconfig.base.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src"
+	},
+	"include": ["src/**/*"]
+	// Uncomment after setting up packages/db
+	// "references": [
+	//   { "path": "../db" }
+	// ]
+}
