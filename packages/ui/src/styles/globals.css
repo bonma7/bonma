@@ -1,0 +1,9 @@
+/*
+ * Minimal CSS for @bonma/ui package
+ *
+ * This package exports components that inherit Tailwind styles
+ * from the consuming application (apps/web).
+ *
+ * The actual Tailwind configuration and CSS variables should be
+ * defined in the app that imports these components.
+ */

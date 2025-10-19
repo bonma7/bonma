@@ -21,8 +21,8 @@
 	},
 
 	// Files to include
-	"include": ["src"]
-
+	"include": ["src"],
+	"exclude": ["node_modules"]
 	// Monorepo references (uncomment after creating packages/api and packages/ui)
 	// "references": [
 	//   { "path": "../../packages/api" },

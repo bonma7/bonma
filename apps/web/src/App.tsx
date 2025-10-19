@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { trpc } from "./lib/trpc";
 import "./App.css";
+import { Button } from "@bonma/ui/components/button";
 
 function App() {
 	// 💾 Database settings (CRUD operations)
@@ -209,6 +210,8 @@ function App() {
 					</div>
 				</div>
 			</div>
+
+			<Button>Click me</Button>
 		</div>
 	);
 }
