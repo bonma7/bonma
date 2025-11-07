@@ -9,6 +9,7 @@
 	],
 	"scripts": {
 		"prepare": "husky"
+		"dev": "bun --filter server dev & bun --filter web dev & wait"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.6",
