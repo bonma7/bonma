@@ -18,7 +18,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ### Development
 
-Start both server and web app in separate terminals:
+Start both server and web app with a single command (recommended):
+
+```bash
+# From root directory - starts both server and web app
+bun dev
+```
+
+Alternatively, start them in separate terminals:
 
 ```bash
 # Terminal 1 - Start backend server (port 3001)
