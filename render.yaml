@@ -35,11 +35,13 @@ services:
     name: bonma-web
     runtime: static
     plan: free
-    # Install dependencies and build frontend
+    # Install dependencies, generate runtime config, and build frontend
     buildCommand: |
       bun install
       cd packages/db && bun run generate
-      cd ../../apps/web && bun run build
+      cd ../../apps/web
+      echo "{\"apiUrl\":\"${API_URL:-http://localhost:3001}\"}" > public/config.json
+      bun run build
     staticPublishPath: apps/web/dist
     routes:
       - type: rewrite
@@ -48,7 +50,7 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: VITE_API_URL
-        sync: false  # Set this in Render dashboard to your backend URL
+      - key: API_URL
+        sync: false  # Set this in Render dashboard to your backend URL (e.g., https://bonma-api.onrender.com)
     # Enable automatic preview environments for pull requests
     previewsEnabled: true

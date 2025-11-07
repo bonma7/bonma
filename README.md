@@ -27,12 +27,27 @@ See [CLAUDE.md](./CLAUDE.md) for detailed development instructions, architecture
 
 ### Environment Variables
 
-Both `apps/server` and `apps/web` include `.env.example` files documenting required environment variables. Copy these to `.env` files for local development:
+#### Server Configuration
+
+Copy the server environment template:
 
 ```bash
 cp apps/server/.env.example apps/server/.env
-cp apps/web/.env.example apps/web/.env
 ```
+
+#### Frontend Configuration (Local Development)
+
+The frontend uses **runtime configuration** loaded from `apps/web/public/config.json`. This approach allows the app to work across different environments without rebuilding.
+
+The default config points to `http://localhost:3001`:
+
+```json
+{
+  "apiUrl": "http://localhost:3001"
+}
+```
+
+To change the API URL for local development, simply edit this file directly—no rebuild required!
 
 ## Deployment
 
@@ -60,7 +75,9 @@ This project includes a `render.yaml` configuration for easy deployment with PR 
    - `CORS_ORIGIN`: Set to your frontend URL (e.g., `https://bonma-web.onrender.com`)
 
    **For `bonma-web` service:**
-   - `VITE_API_URL`: Set to your backend URL (e.g., `https://bonma-api.onrender.com`)
+   - `API_URL`: Set to your backend URL (e.g., `https://bonma-api.onrender.com`)
+
+   The `API_URL` is used during the build process to generate the runtime `config.json` file, which the frontend loads when it starts.
 
 3. **Deploy**
    - Render will automatically build and deploy both services
@@ -70,10 +87,18 @@ This project includes a `render.yaml` configuration for easy deployment with PR 
 #### PR Preview Environments
 
 Preview environments are automatically created for pull requests:
-- Each PR gets its own temporary deployment
+- Each PR gets its own temporary deployment with unique URLs
 - Preview URLs are posted as comments on the PR
 - Previews are deleted when the PR is closed
 - Perfect for testing changes before merging
+
+**For preview environments to work properly:**
+1. After deploying a PR, note the preview API URL (e.g., `https://bonma-api-pr-123.onrender.com`)
+2. Go to the `bonma-web` preview environment settings in Render
+3. Set the `API_URL` environment variable to the preview API URL
+4. Trigger a redeploy of the web preview
+
+*Note: Preview environment variables need to be set manually for each PR, or you can set up a consistent naming pattern and automate this with Render's API.*
 
 #### Database Persistence
 
