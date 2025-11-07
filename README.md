@@ -102,10 +102,28 @@ Preview environments are automatically created for pull requests:
 
 #### Database Persistence
 
-The SQLite database is stored on a persistent disk at `/data/bonma.db`. This ensures your data persists across deployments.
+**⚠️ Important: Free Tier Limitation**
+
+Render's free tier **does not support persistent disks**. This means:
+- The SQLite database is stored in ephemeral container storage (`/tmp/bonma.db`)
+- **All data will be lost** when the service restarts or redeploys
+- This is suitable only for testing/demo purposes
+
+**For production use with persistent data**, you have these options:
+1. Upgrade to a paid Render plan (supports persistent disks)
+2. Use Render's free PostgreSQL database (see below)
+3. Use an external database service (Supabase, Neon, PlanetScale, etc.)
+
+##### Using PostgreSQL (Recommended for Free Tier)
+
+To use Render's free PostgreSQL instead of SQLite:
+1. Add a PostgreSQL database in your Render Blueprint
+2. Update `packages/db/prisma/schema.prisma` to use `postgresql` provider
+3. Set `DATABASE_URL` to the Render PostgreSQL connection string
 
 #### Free Tier Limitations
 
+- **No persistent disks** - use PostgreSQL or accept ephemeral storage
 - Services spin down after 15 minutes of inactivity
 - First request after inactivity may take 30-60 seconds (cold start)
 - 750 hours/month of free usage per service
