@@ -1,0 +1,56 @@
+services:
+  # Backend API Server
+  - type: web
+    name: bonma-api
+    runtime: bun
+    plan: free
+    # Install all workspace dependencies, build db package, then build server
+    buildCommand: |
+      bun install
+      cd packages/db && bun run generate
+      cd ../../apps/server && bun run build
+    startCommand: cd apps/server && bun run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: HOST
+        value: 0.0.0.0
+      - key: DATABASE_URL
+        value: file:/data/bonma.db
+      - key: CORS_ORIGIN
+        sync: false  # Set this in Render dashboard to your frontend URL
+      - key: LOG_LEVEL
+        value: info
+    disk:
+      name: bonma-db
+      mountPath: /data
+      sizeGB: 1
+    # Enable automatic preview environments for pull requests
+    previewsEnabled: true
+
+  # Frontend Static Site
+  - type: web
+    name: bonma-web
+    runtime: static
+    plan: free
+    # Install dependencies, generate runtime config, and build frontend
+    buildCommand: |
+      bun install
+      cd packages/db && bun run generate
+      cd ../../apps/web
+      echo "{\"apiUrl\":\"${API_URL:-http://localhost:3001}\"}" > public/config.json
+      bun run build
+    staticPublishPath: apps/web/dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: API_URL
+        sync: false  # Set this in Render dashboard to your backend URL (e.g., https://bonma-api.onrender.com)
+    # Enable automatic preview environments for pull requests
+    previewsEnabled: true
