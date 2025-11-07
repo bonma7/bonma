@@ -1,3 +1,8 @@
+# Preview environments configuration
+# Automatically creates preview environments for pull requests
+previews:
+  generation: automatic
+
 services:
   # Backend API Server
   - type: web
@@ -23,12 +28,12 @@ services:
         sync: false  # Set this in Render dashboard to your frontend URL
       - key: LOG_LEVEL
         value: info
+      - key: IS_PULL_REQUEST
+        value: false  # Automatically set to true in preview environments
     disk:
       name: bonma-db
       mountPath: /data
       sizeGB: 1
-    # Enable automatic preview environments for pull requests
-    previewsEnabled: true
 
   # Frontend Static Site
   - type: web
@@ -52,5 +57,5 @@ services:
         value: production
       - key: API_URL
         sync: false  # Set this in Render dashboard to your backend URL (e.g., https://bonma-api.onrender.com)
-    # Enable automatic preview environments for pull requests
-    previewsEnabled: true
+      - key: IS_PULL_REQUEST
+        value: false  # Automatically set to true in preview environments
