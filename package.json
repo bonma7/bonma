@@ -7,7 +7,9 @@
 		"apps/*",
 		"packages/*"
 	],
-	"scripts": {},
+	"scripts": {
+		"dev": "bun --filter server dev & bun --filter web dev & wait"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "2.2.6",
 		"typescript": "^5.9.3"
